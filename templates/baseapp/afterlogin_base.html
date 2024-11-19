@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock title %}</title>
+    <link rel="stylesheet" href={% static 'css/base.css' %}>
+    <script src="https://kit.fontawesome.com/bbacb662c9.js" crossorigin="anonymous"></script>
+    {% block css %}
+    <link rel="stylesheet" href={% static 'css/profile.css' %}>
+    {% endblock css %}
+    {% block script %}
+    <script src={%static "scripts/profilepopup.js"%}></script>
+    {% endblock script %}
+</head>
+<body>
+    <header>
+    <nav class="navbar">
+      <a href="/" class="logo">
+        <img src={%static "images/bblogo.jpg"%} alt="logo" width="100px" >
+      </a>
+      <ul class="links">
+        <li><a href={%url 'afterlogin_home'%}>Home</a></li> <!-- Add id for home if needed -->
+        <li><a href="/home/#about">About</a></li> <!-- Add href to about section -->
+        <li><a href="/home/#contact">Contact Us</a></li> 
+        <li><a href={%url "book_list"%}>Buy</a></li> 
+        <li><a href={%url "sell"%}>Sell</a></li> <!-- Add href to contact section -->
+        
+      </ul>
+      <div>
+      <button class="logout-btn"><form action = {% url 'logout' %} method="post" >
+        {% csrf_token %}
+        <a href={% url "logout" %}>
+        <input type="submit" value="LogOut">
+        </a>
+    </form></button>
+    <div class="profile">
+         <a href=/accounts/profile/><i class="fa-solid fa-user"></i></a>
+    </div>
+    </div>
+          </nav>
+  </header>
+    
+    {% block body %}{% endblock body %}
+    <!-- Profile Sidebar -->
+    {% comment %} <div id="profile-sidebar" class="sidebar">
+        <div class="sidebar-header">
+            <h2>Profile</h2>
+            <span id="close-sidebar"><i class="fa-solid fa-xmark"></i></span>
+        </div>
+        <div class="sidebar-content">
+            <h1>Profile</h1>
+    <p>
+        {{object}}
+    </p>
+    <p>
+        {{object.name}}
+        
+    </p>
+    <p>
+        {{object.phone}}
+    </p>
+    <p> Date Joined: {{object.date_joined}}</p> {% endcomment %}
+    {% comment %} <p> Number of books bought: {{object.books_bought}}</p>
+    <p>Number of books on sale: {{object.books_sold}} </p> {% endcomment %}
+    {% comment %} <p></p> {% endcomment %}
+    {% comment %} <a href={%url "cart:cart_detail"%}>Your Cart</a>
+    <a href="/sell-list">Your Books on Sale</a>
+    <form action = {% url 'logout' %} method="post" >
+        {% csrf_token %}
+        <a href={% url "logout" %}>
+        <input type="submit" value="LogOut">
+        </a>
+    </form>
+        </div>
+    </div> {% endcomment %}
+    <footer>
+        <div class="foot1">
+            <h3>BookBazaar</h3>
+            <p>&copy;2024 BookBazaar </p>
+            <p>Terms of Service | Privacy Policy</p>
+        </div>
+        <div class="foot2">
+            <ul>
+                <li><h3>Books</h3></li>
+                <li><a href={%url "book_list"%}>Buy a Book</a></li>
+                <li><a href={%url "sell"%}>Sell a Book</a></li>
+            </ul>   
+        </div>
+        <div class="foot3">
+            <h3>About Us</h3>
+            <ul>
+                
+                <li>About BookBazaar</li>
+                <li>Help Center</li>
+                <li>Pricing</li>
+                <li>Features</li>
+            </ul>
+        </div>
+        <div class="foot4">
+            <h3>Contact Us</h3>
+            <ul>
+                
+                <div>
+                    <div><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50"
+style="fill:#FFFFFF;">
+<path d="M 16 3 C 8.8324839 3 3 8.8324839 3 16 L 3 34 C 3 41.167516 8.8324839 47 16 47 L 34 47 C 41.167516 47 47 41.167516 47 34 L 47 16 C 47 8.8324839 41.167516 3 34 3 L 16 3 z M 16 5 L 34 5 C 40.086484 5 45 9.9135161 45 16 L 45 34 C 45 40.086484 40.086484 45 34 45 L 16 45 C 9.9135161 45 5 40.086484 5 34 L 5 16 C 5 9.9135161 9.9135161 5 16 5 z M 37 11 A 2 2 0 0 0 35 13 A 2 2 0 0 0 37 15 A 2 2 0 0 0 39 13 A 2 2 0 0 0 37 11 z M 25 14 C 18.936712 14 14 18.936712 14 25 C 14 31.063288 18.936712 36 25 36 C 31.063288 36 36 31.063288 36 25 C 36 18.936712 31.063288 14 25 14 z M 25 16 C 29.982407 16 34 20.017593 34 25 C 34 29.982407 29.982407 34 25 34 C 20.017593 34 16 29.982407 16 25 C 16 20.017593 20.017593 16 25 16 z"></path>
+</svg></div>
+                    <div><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 60 60"
+style="fill:#FFFFFF;">
+<path d="M48,7H16c-4.418,0-8,3.582-8,8v32c0,4.418,3.582,8,8,8h17V38h-6v-7h6v-5c0-7,4-11,10-11c3.133,0,5,1,5,1v6h-4 c-2.86,0-4,2.093-4,4v5h7l-1,7h-6v17h8c4.418,0,8-3.582,8-8V15C56,10.582,52.418,7,48,7z"></path>
+</svg></div>
+                    <div><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50"
+style="fill:#FFFFFF;">
+<path d="M 6.9199219 6 L 21.136719 26.726562 L 6.2285156 44 L 9.40625 44 L 22.544922 28.777344 L 32.986328 44 L 43 44 L 28.123047 22.3125 L 42.203125 6 L 39.027344 6 L 26.716797 20.261719 L 16.933594 6 L 6.9199219 6 z"></path>
+</svg></div>
+                    <div><svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 60 60"
+style="fill:#FFFFFF;">
+<path d="M48,8H16c-4.418,0-8,3.582-8,8v32c0,4.418,3.582,8,8,8h32c4.418,0,8-3.582,8-8V16C56,11.582,52.418,8,48,8z M24,47h-5V27h5 V47z M24.029,23.009C23.382,23.669,22.538,24,21.5,24c-1.026,0-1.865-0.341-2.519-1.023S18,21.458,18,20.468 c0-1.02,0.327-1.852,0.981-2.498C19.635,17.323,20.474,17,21.5,17c1.038,0,1.882,0.323,2.529,0.969 C24.676,18.615,25,19.448,25,20.468C25,21.502,24.676,22.349,24.029,23.009z M47,47h-5V35.887C42,32.788,40.214,31,38,31 c-1.067,0-2.274,0.648-2.965,1.469S34,34.331,34,35.594V47h-5V27h5v3.164h0.078c1.472-2.435,3.613-3.644,6.426-3.652 C44.5,26.5,47,29.5,47,34.754V47z"></path>
+</svg></div>
+                </div>
+            </ul>
+        </div>
+    </footer>
+    
+</body>
+</html>

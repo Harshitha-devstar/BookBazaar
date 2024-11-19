@@ -1,0 +1,158 @@
+h1{
+    text-align: center;
+}
+#sidebar ul{
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    gap:20px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+#sidebar ul li{
+    border:1px solid grey;
+    padding:10px 20px;
+    border-radius: 25px;
+    font-size: 15px;
+    
+}
+#sidebar ul .selected {
+    background-color: rgb(36, 35, 35);
+    
+}
+#sidebar ul .selected a{
+    color:rgba(255, 255, 255, 0.664);
+    
+}
+
+a{
+    text-decoration: none;
+    color:rgb(36, 35, 35);
+}
+/* footer{
+    position:absolute;
+    bottom:0;
+} */
+#main{
+    padding:20px;
+    margin:10px;
+    
+
+}
+
+    main{
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 20px;
+}
+
+/*  Container for the grid */
+.items{
+    display: grid;
+    /* border:1px solid black; */
+    
+    grid-template-columns:repeat(6, 1fr);
+    padding:10px;
+    margin:5px;
+    gap: 10px;
+}
+
+/* Card Styling */
+.items .item{
+    border:1px solid rgb(59, 59, 59);
+    width:200px;
+    font-size: clamp(14px, 16px);
+    height:250px;
+    margin:5px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px; 
+    box-shadow: 1px 1px 10px black;
+    /* border:1px solid rgb(36, 35, 35); */
+    position: relative;
+    align-items: center;
+    overflow: hidden;
+    transition: background-color 0.3s ease;
+}
+.items .item:nth-child(odd)
+{
+    background-color: var(--green);
+}
+.items .item:nth-child(even)
+{
+    background-color: var(--pink);
+}
+.items .item .name{
+    
+    text-align: center;
+    position: absolute;
+    
+    bottom: 70px;
+
+    width: 100%;
+
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.items .item h3{
+    position: absolute;
+    bottom:40px;
+    
+    text-align: center;
+    width:100%;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    color: rgb(62, 61, 61);
+}
+.items .item img{
+    width:100%;
+    height:130px;
+    border-radius: 10px 10px 0px 0px;
+    transition: transform 0.3s ease, z-index 0s ease; /* Smooth image scaling */
+
+    z-index: 1; /* Keep image initially in the normal stacking order */
+}
+
+/* Hover Effect */
+
+.items .item:hover img {
+
+    transform: scale(1.3); /* Scale the image on hover */
+
+    z-index: 10; /* Bring the image in front of the text */
+
+}
+
+
+
+.items .item:hover .name, 
+
+.items .item:hover h3 {
+
+    opacity: 0; /* Fade out the name and price */
+
+    transform: translateY(20px); /* Move the name and price down */
+
+}
+
+
+
+/* Reset text visibility for hover state */
+
+.items .item img:hover {
+
+    transform: scale(1.3); /* Slight zoom in effect on image */
+
+    z-index: 10; /* Ensure image appears above the text */
+}
+h3{
+    color:rgba(128, 128, 128, 0.568);
+    text-align: center;
+}
+.logo img{
+    width:100px;
+    height:auto;
+}

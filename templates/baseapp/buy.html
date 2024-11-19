@@ -1,0 +1,62 @@
+{% extends "baseapp/afterlogin_base.html" %}
+{% load static %}
+{% block title %}BookBazaar | Buy{% endblock title %}
+{% block css %}
+    <link rel="stylesheet" href={% static "css/buy.css" %}>
+{% endblock css %}
+{% block body %}
+    <main>
+        <h1>
+            
+                {% comment %} {% if category %}
+                    {{category.name}}
+
+                {% else %} {% endcomment %}
+                    Books
+                {% comment %} {% endif %} {% endcomment %}
+            
+        </h1>
+        <div id = "sidebar">
+
+            {% comment %} <h3>Categories</h3> {% endcomment %}
+            <ul>
+                <li
+                    {% if not category  %} class = "selected" {% endif %}>
+                    <a href={%  url "book_list" %}>All</a>
+                </li>
+                {% for c in categories  %}
+                    <li {% if category.slug == c.slug %} class= "selected" {%endif%}>
+                        <a href="{{c.get_absolute_url}}">{{c.name}}</a>
+                    </li>
+                
+                {% endfor %}
+            </ul>
+        </div>
+        <div id = "main" class = "book-list">
+            <h1>
+            {% if category %}
+                {{category.name}}
+
+            {% else %}
+            All Books
+            {% endif %}
+            </h1>
+        {% if books %}
+        <div class="items">
+        {% for book in books  %}
+            <div class="item">
+                <a href="{{book.get_absolute_url}}">
+                    <img src="{%if book.image %}{{book.image.url}}{% else %} {% static "images/no_image.png" %}{% endif %} " alt="book-image" />
+                </a>
+                <a href="{{book.get_absolute_url}}" class = "name">{{book.name}}</a>
+                
+                <h3>Rs.{{book.price}}</h3>
+            </div>
+        {% endfor %}
+        </div>
+        {% else %}
+        <h3>You have no books here!</h3>
+        {% endif %}
+        </div>
+    </main>
+{% endblock body %}

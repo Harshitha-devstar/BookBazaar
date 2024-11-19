@@ -1,0 +1,65 @@
+{% extends "baseapp/afterlogin_base.html" %}
+{% load static %}
+{% block title %}BookBazaar | Cart {% endblock title %}
+{% block css %}<link rel="stylesheet" href={% static 'css/cart_detail.css' %} />{% endblock css %}
+{% block body %}
+<main>
+   <h1>Your shopping cart</h1>
+   <div class="cart">
+      {% for item in cart %} 
+         {% with book=item.book %} 
+         <div class="cartItems">
+            
+            <div class="image">
+               <a href="{{ book.get_absolute_url }}">
+               <img src="{% if book.image %}{{ book.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
+               </a>
+            </div>
+            <div class="product">
+               {{ book.name }}
+            </div>
+            <div class="info">
+               <div class="quantity">
+                  <span>Quantity:</span>
+                  <form action="{%url "cart:cart_add" book.id%}" method="post">
+                     {{item.update_quantity_form.quantity}}
+                     {{item.update_quantity_form.override}}
+                     {% csrf_token %}
+                     <input type="submit" value="Update">
+                  </form>
+               </div>
+               <div class="unitPrice">
+                  <span>Unit Price:</span>
+                  Rs.{{ item.price }}
+               </div>
+               <div class="price">
+                  <span>Price:</span>
+                  Rs.{{ item.total_price }}
+               </div>
+            </div>
+            <button class = 'remove'>
+               <form action="{% url "cart:cart_remove" book.id %}" method="post">
+               {% csrf_token %} 
+               <input type="submit" value="Remove"> 
+                     
+               </form>
+            </button>
+         </div>
+         {% endwith %} 
+      {% endfor %} 
+      <div class="total">
+         Total: Rs.{{ cart.get_total_price }}
+      </div>
+      <p class="text-right">
+         <a href="{% url "book_list" %}" class="button light">Continue shopping</a>
+         <a href="#" class="button">Checkout</a>
+      </p>
+   </div>
+
+
+
+
+</main>
+    
+ 
+{% endblock body %}

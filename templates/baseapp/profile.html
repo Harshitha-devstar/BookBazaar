@@ -1,0 +1,67 @@
+{% extends "baseapp/afterlogin_home.html" %}
+{% load static %}
+{% block title %}BookBazaar{% endblock title %}
+{% block css %}
+    <link rel="stylesheet" href={% static "css/profile.css" %}>
+{% endblock css %}{% block body %}
+<main class="profile">
+  
+    
+    <h1>Welcome to Your Profile</h1>
+
+    <!-- Profile Picture Section -->
+     <div style="text-align: center; margin-bottom: 20px;">
+        {% if object.gender == 'female' %}
+            <!-- Female Avatar -->
+            <img 
+                src="https://api.dicebear.com/6.x/avataaars/svg?seed={{ object.id|default:'default' }}&gender=female" 
+                alt="Female Profile Cartoon Illustration" 
+                style="width: 150px; height: 150px; border-radius: 50%; background: #2d2d2d; padding: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);">
+        {% else %}
+            <!-- Default (Male) Avatar -->
+            <img 
+                src="https://api.dicebear.com/6.x/avataaars/svg?seed={{ object.id|default:'default' }}&gender=male" 
+                alt="Male Profile Cartoon Illustration" 
+                style="width: 150px; height: 150px; border-radius: 50%; background: #2d2d2d; padding: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);">
+        {% endif %}
+        <p style="margin-top: 10px; font-style: italic; color: #e6c89c;">
+            {{object}}
+        </p>
+    </div>
+
+    <!-- User Details -->
+    <p>
+        <strong>User Details:</strong> 
+        <span style="color: #f5deb3;">{{ object.name }}</span> 
+    </p>
+    <p>
+        <strong>Contact:</strong> 
+        <span style="color: #e6c89c;">{{ object.phone }}</span>
+    </p>
+    <p>
+        <strong>Member Since:</strong> 
+        <span style="color: #ffffff;">{{ object.date_joined|date:"F j, Y" }}</span>
+    </p>
+
+    <!-- Action Buttons -->
+    <div>
+        <a href={% url "cart:cart_detail" %} title="View and manage your cart">
+            🛒 View Your Cart
+        </a>
+        <a href="/sell-list" title="Check your books on sale">
+            📚 Your Books on Sale
+        </a>
+    </div>
+
+    <!-- Logout Form -->
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="🔓 Logout">
+    </form>
+
+
+
+</main>
+
+    
+{% endblock body %}

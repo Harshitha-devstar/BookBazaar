@@ -1,0 +1,61 @@
+{% extends "baseapp/afterlogin_home.html" %}
+{% load static %}
+{% block title %}BookBazaar | Your Books on Sale {% endblock title %}
+{% block css %}
+    <link rel="stylesheet" href={% static "css/buy.css" %}>
+{% endblock css %}
+{% block body %}
+        <h1>
+            
+                {% comment %} {% if category %}
+                    {{category.name}}
+
+                {% else %} {% endcomment %}
+                    Books
+                {% comment %} {% endif %} {% endcomment %}
+            
+        </h1>
+        <div id = "sidebar">
+
+            {% comment %} <h3>Categories</h3> {% endcomment %}
+            <ul>
+                <li
+                    {% if not category  %} class = "selected" {% endif %}>
+                    <a href={%  url "sale-list" %}>All</a>
+                </li>
+                {% for c in categories  %}
+                    <li {% if category.slug == c.slug %} class= "selected" {%endif%}>
+                        <a href="/sale{{c.get_absolute_url}}">{{c.name}}</a>
+                    </li>
+                
+                {% endfor %}
+            </ul>
+        </div>
+        <div id = "main" class = "book-list">
+            <h1>
+            {% if category %}
+                {{category.name}}
+
+            {% else %}
+            All Books
+            {% endif %}
+            </h1>
+            {% if books %}
+            <div class="items">
+        {% for book in books  %}
+            <div class="item">
+                <a href="/sale{{book.get_absolute_url}}">
+                    <img src="{%if book.image %}{{book.image.url}}{% else %} {% static "images/no_image.png" %}{% endif %} " alt="book-image" />
+                </a>
+                <a href="/sale{{book.get_absolute_url}}">{{book.name}}</a>
+                <br>
+                <h3>Rs.{{book.price}}</h3>
+            </div>
+        {% endfor %}
+        </div>
+        {% else %}
+        <h3>You have no books here!</h3>
+        {% endif %}
+        </div>
+
+{% endblock body %}

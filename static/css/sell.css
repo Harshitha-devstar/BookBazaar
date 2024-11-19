@@ -1,0 +1,92 @@
+.sell-form{
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding:10px;
+    /* border:1px solid gray; */
+    margin:10px auto;
+    border-radius: 15px;
+}
+form p{
+    margin:35px;
+    display: flex;
+    flex-direction: row;
+    gap:20px;
+    position:relative;
+    width:100%;
+    /* border:1px solid black; */
+}
+form p input, form p select{
+    outline: none;
+    background: transparent;
+    padding:10px;
+    border:none;
+    border:1px solid rgba(53, 53, 53, 0.336) ;
+    border-radius: 3px;
+    color:rgb(79, 78, 78);
+    width:90%;
+}
+form p select{
+    width:95%;
+}
+form p label{
+    position:absolute;
+    bottom:100%;
+    color:rgb(55, 55, 55);
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+form p textarea{
+    background-color: transparent;
+    border:1px solid rgba(128, 128, 128, 0.514);
+    border-radius: 4px;
+    width:94%;
+}
+
+#submit{
+    padding:5px 10px;
+    margin:5px;
+    height:50px;
+    background-color:transparent;
+    width:50%;
+    border:none;
+    border:2px solid rgb(35, 35, 35);
+    border-radius: 3px;
+    position: relative;
+    /* left:10%; */
+    color:rgb(41, 41, 41);
+    transition: all 0.5s ease;
+
+}
+#submit:hover{
+    background-color: transparent;
+    border: 1px solid gray;
+    color: rgb(46, 45, 45);
+}
+h4{
+    text-align: center;
+    font-size: 25px;
+    
+}
+form p input[type = "checkbox"]{
+    padding:5px;
+    width:25px;
+    height:25px;
+    /* color:rgb(10, 140, 47); */
+}
+/* form p input[type = "file" ]#file-upload-button{
+    background-color: rgb(21, 159, 56);
+    color:rgb(53, 52, 52);
+    border: none;
+} */
+ .logo img{
+    width:100px;
+    height:auto;
+}
+/* footer{
+    position:absolute;
+    bottom:0;
+} */
+ 

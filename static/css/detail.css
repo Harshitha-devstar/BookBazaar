@@ -1,0 +1,55 @@
+
+body{
+    background-color: whitesmoke;
+    height:100vh;
+    
+}
+
+.book-detail{
+    /* border:1px solid black; */
+    box-shadow: 1px 1px 10px black;
+    margin:20px auto;
+    padding:15px;
+    width:max-content;
+    font-size: 18px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    gap:30px;
+
+    
+}
+img{
+    width:300px;
+}
+.book-detail h2, .book-detail h1{
+    color:rgb(77, 75, 75);
+    font-size: 20px;
+}
+.book-detail form div select{
+    background-color: transparent;
+    padding:5px;
+    border-radius: 5px;
+}
+.book-detail form input{
+    margin:15px;
+    height:40px;
+    background-color: rgb(19, 181, 67);
+    border:none;
+    border-radius: 4px;
+    padding:10px 20px;
+    color:rgb(37, 36, 36);
+    transition:all 0.5s ease;
+}
+.book-detail form input:active{
+    background-color: rgb(18, 125, 41);
+    box-shadow: 1px 1px 3px black;
+}
+footer{
+    position:absolute;
+    bottom:0;
+}
+.logo img{
+    width:100px;
+    height:auto;
+}

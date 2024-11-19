@@ -1,0 +1,16 @@
+{% extends "baseapp/base.html" %}
+{% load static %}
+{% block title %}BookBazaar | Sign Up{% endblock title %}
+{% block css %}
+    <link rel="stylesheet" href={% static "css/signup.css" %}>
+{% endblock css %}
+{% block body %}
+<main>
+    <h1>Sign Up</h1>
+    <form  method="post">
+        {{form.as_p}}
+        {% csrf_token %}
+        <input type="submit" value="SignUp">
+    </form>
+    </main>
+{% endblock body %}

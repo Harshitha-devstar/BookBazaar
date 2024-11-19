@@ -1,0 +1,114 @@
+/* Ensure the body takes up full height and allows scrolling */
+
+
+main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Centering the form content vertically */
+h1 {
+    color: #786446;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 2rem;
+    animation: fadeIn 1s ease-out; /* Fading in animation */
+}
+
+/* Style for the form container */
+form {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 600px; /* Maximum width for the form */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    position: relative; /* Allow flexibility for positioning */
+    z-index: 1;
+    opacity: 0;
+    animation: formFadeIn 1s ease-out forwards; /* Fade-in animation for form */
+}
+
+/* Style for form elements */
+p {
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+    animation: fadeIn 1.5s ease-out;
+}
+
+input[type="email"],
+input[type="text"],
+input[type="tel"],
+input[type="date"],
+input[type="password"],
+select {
+    width: 90%;
+    padding: 12px;
+    border: 2px solid #866c46;
+    border-radius: 5px;
+    background-color: #d5d5d5;
+    color: #2d2d2d;
+    font-size: 1rem;
+    transition: border-color 0.3s ease, background-color 0.3s ease; /* Smooth transition */
+}
+
+input:focus, select:focus {
+    border-color: #8b7453;
+    background-color: #fff;
+    outline: none;
+    transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+input[type="submit"] {
+    background-color: #8e7654;
+    color: #2d2d2d;
+    padding: 12px 30px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Smooth transition */
+}
+
+input[type="submit"]:hover {
+    background-color: #f5deb3;
+    color: #2d2d2d;
+    transform: translateY(-2px); /* Hover effect */
+}
+
+input[type="submit"]:active {
+    transform: translateY(1px); /* Button active effect */
+}
+
+/* Fade-in animation for form */
+@keyframes formFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade-in effect for labels and form elements */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Hide the password authentication label and related elements */
+#id_usable_password label,
+#id_usable_password,
+#id_usable_password_helptext {
+    display: none;
+}

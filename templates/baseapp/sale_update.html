@@ -1,0 +1,17 @@
+{% extends "baseapp/afterlogin_home.html" %}
+{% load static %}
+{% block title %}BookBazaar | Sell{% endblock title %}
+{% block css %}
+    <link rel="stylesheet" href={% static "css/sell.css" %}>
+{% endblock css %}
+{% block body %}
+<div class="sell-form">
+    <h4>Update book details and place your book on sale</h4>
+<form  method="post" enctype = "multipart/form-data">
+    {{form.as_p}}
+    {% csrf_token %}
+    <input type="submit" value="PLACE ON SALE" id = "submit">
+</form>
+</div>
+
+{% endblock body %}
